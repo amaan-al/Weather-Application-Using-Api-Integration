@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #83a4d4, #b6fbff);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
+        .weather-box {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            width: 300px;
+            text-align: center;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #1e90ff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0b75d1;
+        }
+    </style>
+</head>
+<body>
+    <div class="weather-box">
+        <h2>Weather Checker</h2>
+        <form method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <br>
+            <button type="submit">Get Weather</button>
+        </form>
+        {% if weather %}
+            {% if weather.error %}
+                <p style="color:red;">Error: {{ weather.error }}</p>
+            {% else %}
+                <h3>{{ weather.city }}</h3>
+                <p>Temperature: {{ weather.temperature }}°C</p>
+                <p>Condition: {{ weather.description }}</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
